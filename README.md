@@ -7,6 +7,6 @@ Buttons for easy step-by-step progression of the algorithm.
 
 Compile using `make`.
 
-Run using `./sorter`
+Run using `./sorter`.
 
 Requires [SDL2](https://www.libsdl.org/) and [SDL_TTF](https://www.libsdl.org/projects/SDL_ttf/).
