@@ -7,7 +7,7 @@
 
 #define BUTTON_WIDTH 100
 #define BUTTON_HEIGHT 50
-#define AMOUNT_OF_ELEMENTS 20
+#define AMOUNT_OF_ELEMENTS 15
 
 
 Program::Program(const char* title, int xpos, int ypos, int w, int h, bool fullscreen)
@@ -188,12 +188,12 @@ void Program::renderVector() const
         SDL_FreeSurface(textSurface);
         SDL_DestroyTexture(textTexture);
     }
-    arrowRect = {screen_x + current.first * elemRect.w + (elemRect.w - 50) / 2, screen_y + screen_h / 2 + elemRect.h - 50 / 2, 50, 50};
+    arrowRect = {screen_x + current.first * elemRect.w, screen_y + screen_h / 2 + elemRect.h - elemRect.w / 2, elemRect.w, elemRect.w};
     SDL_RenderCopy(renderer, arrowTexture, NULL, &arrowRect);
 
-    arrowRect = {screen_x + current.second * elemRect.w + (elemRect.w - 50) / 2, screen_y + screen_h / 2 + elemRect.h - 50 / 2, 50, 50};
+    arrowRect = {screen_x + current.second * elemRect.w, screen_y + screen_h / 2 + elemRect.h - elemRect.w / 2, elemRect.w, elemRect.w};
     SDL_RenderCopy(renderer, arrow2Texture, NULL, &arrowRect);
 
-    arrowRect = {screen_x + (current.second - 1) * elemRect.w + (elemRect.w - 50) / 2, screen_y + screen_h / 2 + elemRect.h - 50 / 2, 50, 50};
+    arrowRect = {screen_x + (current.second - 1) * elemRect.w, screen_y + screen_h / 2 + elemRect.h - elemRect.w / 2, elemRect.w, elemRect.w};
     SDL_RenderCopy(renderer, arrow2Texture, NULL, &arrowRect);
 }
