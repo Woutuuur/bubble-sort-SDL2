@@ -22,12 +22,12 @@ Button::~Button()
 
 void Button::setBackgroundColor(const int r, const int g, const int b)
 {
-    backgroundColor = {r, g, b, 255};
+    backgroundColor = {(Uint8)r, (Uint8)g, (Uint8)b, 255};
 }
 
 void Button::setTextColor(const int r, const int g, const int b)
 {
-    textColor = {r, g, b, 255};
+    textColor = {(Uint8)r, (Uint8)g, (Uint8)b, 255};
 }
 
 bool Button::mouseHover() const
