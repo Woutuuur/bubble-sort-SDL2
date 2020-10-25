@@ -3,7 +3,6 @@ Bubble sort visualizer made in C++ with SDL2.
 
 Visually shows which elements are checked and swapped during a bubble sort algorithm.
 Buttons for easy step-by-step progression of the algorithm.
-
 ![](example.gif)
 
 Compile using `make`.
