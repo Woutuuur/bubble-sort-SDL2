@@ -72,7 +72,7 @@ void Program::render() const
     //Render buttons
     if (current.first < vec.size())
         nextStep->render();
-    if (current.first > 0 || current.second > 0)
+    if (current.first > 0 || current.second > 0 || (current.first == -2 && current.second == -2))
         prevStep->render();
     allSteps->render();
     renderVector();
@@ -101,7 +101,7 @@ void Program::handleEvents()
                 {
                     prevSteps.push(std::make_pair(vec, current));
                     sortFull(vec);
-                    current = std::make_pair(vec.size(), vec.size());
+                    current = std::make_pair(-2,-2);
                     swapped = std::make_pair(-1,-1);
                 }
                 if (prevStep->mouseHover() && prevSteps.size() > 0)
