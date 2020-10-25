@@ -7,6 +7,7 @@
 
 #define BUTTON_WIDTH 100
 #define BUTTON_HEIGHT 50
+#define AMOUNT_OF_ELEMENTS 20
 
 
 Program::Program(const char* title, int xpos, int ypos, int w, int h, bool fullscreen)
@@ -31,7 +32,7 @@ Program::Program(const char* title, int xpos, int ypos, int w, int h, bool fulls
     prevStep->setFontSize(100);
     allSteps->setFontSize(100);
 
-    for (int i = 0; i < 20; i++)
+    for (int i = 0; i < AMOUNT_OF_ELEMENTS; i++)
         vec.push_back(rand() % 500);
 
     screen_w = w - 20;
