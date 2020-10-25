@@ -16,9 +16,7 @@ class Program
 
         void handleEvents();
         void render() const;
-        void update();
-        void destroy();
-
+        
         bool running() const {return isRunning;}
         void stop() {isRunning = false;}
 

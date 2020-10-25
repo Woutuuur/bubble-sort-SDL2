@@ -4,6 +4,7 @@
 #include <stdexcept>
 #include <string.h>
 #include <utility>
+#include <time.h>
 #include <iomanip>
 #include "program.h"
 #include "bubblesort.h"
@@ -13,19 +14,16 @@
 
 int main()
 {
+    srand(time(NULL));
     try
     {
-        Program* program = new Program("Sorting visualizer", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, WINDOW_WIDTH, WINDOW_HEIGHT, false);
+        Program* program = new Program("Bubble sort visualizer", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, WINDOW_WIDTH, WINDOW_HEIGHT, false);
         while (program->running())
         {
             program->handleEvents();
-            program->update();
             program->render();
         }
-        program->destroy();
         delete program;
-        SDL_Quit();
-        TTF_Quit();
     }
     catch (std::runtime_error &e)
     {

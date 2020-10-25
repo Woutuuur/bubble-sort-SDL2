@@ -8,7 +8,6 @@ class Button
         Button(SDL_Renderer* renderer, const int x, const int y, const int w, const int h);
         ~Button();
         void render();
-        void update();
         void setBackgroundColor(const int r, const int g, const int b);
         void setTextColor(const int r, const int g, const int b);
         void setText(std::string text);
@@ -30,7 +29,6 @@ class Button
         TTF_Font* font;
         void setFont();
 
-        bool outLine = true;
         void renderText() const;
         
 };

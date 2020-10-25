@@ -19,7 +19,6 @@ Program::Program(const char* title, int xpos, int ypos, int w, int h, bool fulls
     if (!renderer) throw std::runtime_error("Could not initialize renderer.");
     isRunning = true;
     if (TTF_Init() != 0) throw std::runtime_error("Could not initialize TTF.");
-
     prevStep = new Button(renderer, 10, h - BUTTON_HEIGHT - 10, BUTTON_WIDTH, BUTTON_HEIGHT);
     nextStep = new Button(renderer, w - BUTTON_WIDTH - 10, h - BUTTON_HEIGHT - 10, BUTTON_WIDTH, BUTTON_HEIGHT);
     allSteps = new Button(renderer, w / 2 - BUTTON_WIDTH / 2, h - BUTTON_HEIGHT - 10, BUTTON_WIDTH, BUTTON_HEIGHT);
@@ -32,10 +31,8 @@ Program::Program(const char* title, int xpos, int ypos, int w, int h, bool fulls
     prevStep->setFontSize(100);
     allSteps->setFontSize(100);
 
-    for (int i = 0; i < 10; i++)
-    {
+    for (int i = 0; i < 20; i++)
         vec.push_back(rand() % 500);
-    }
 
     screen_w = w - 20;
     screen_h = h - BUTTON_HEIGHT - 20;
@@ -54,7 +51,15 @@ Program::~Program()
     delete nextStep;
     delete prevStep;
     delete allSteps;
+    SDL_DestroyTexture(arrowTexture);
+    SDL_DestroyTexture(arrow2Texture);
+    SDL_FreeSurface(arrowImage);
+    SDL_FreeSurface(arrow2Image);
+    SDL_DestroyRenderer(renderer);
+    SDL_DestroyWindow(window);
     TTF_CloseFont(font);
+    TTF_Quit();
+    SDL_Quit();
 }
 
 void Program::render() const
@@ -112,21 +117,6 @@ void Program::handleEvents()
     }
 }
 
-void Program::update()
-{
-    return;
-}
-
-void Program::destroy()
-{
-    SDL_DestroyWindow(window);
-    SDL_DestroyTexture(arrowTexture);
-    SDL_DestroyTexture(arrow2Texture);
-    SDL_FreeSurface(arrowImage);
-    SDL_FreeSurface(arrow2Image);
-    SDL_DestroyRenderer(renderer);
-}
-
 void Program::renderLegend() const
 {
     SDL_Surface* textSurface;
@@ -139,6 +129,7 @@ void Program::renderLegend() const
     textTexture = SDL_CreateTextureFromSurface(renderer, textSurface);
     textRect = {70, 10, 250, 50};
     SDL_RenderCopy(renderer, textTexture, NULL, &textRect);
+
     SDL_FreeSurface(textSurface);
     SDL_DestroyTexture(textTexture);
 
@@ -148,6 +139,7 @@ void Program::renderLegend() const
     textTexture = SDL_CreateTextureFromSurface(renderer, textSurface);
     textRect = {70, 70, 250, 50};
     SDL_RenderCopy(renderer, textTexture, NULL, &textRect);
+
     SDL_FreeSurface(textSurface);
     SDL_DestroyTexture(textTexture);
     
@@ -160,6 +152,7 @@ void Program::renderLegend() const
     textTexture = SDL_CreateTextureFromSurface(renderer, textSurface);
     textRect = {70, 140, 250, 50};
     SDL_RenderCopy(renderer, textTexture, NULL, &textRect);
+    
     SDL_FreeSurface(textSurface);
     SDL_DestroyTexture(textTexture);
 

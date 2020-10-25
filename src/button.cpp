@@ -10,7 +10,7 @@ Button::Button(SDL_Renderer* renderer, const int x, const int y, const int w, co
     buttonRect->w = w;
     buttonRect->h = h;
     this->renderer = renderer;
-    setFont();
+    font = TTF_OpenFont(fontDir.c_str(), fontSize);
 }
 
 Button::~Button()
@@ -18,7 +18,6 @@ Button::~Button()
     delete buttonRect;
     TTF_CloseFont(font);
     SDL_DestroyRenderer(renderer);
-
 }
 
 void Button::setBackgroundColor(const int r, const int g, const int b)
@@ -47,12 +46,7 @@ void Button::render()
     SDL_RenderFillRect(renderer, buttonRect);
     renderText();
     SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
-    if (outLine) SDL_RenderDrawRect(renderer, buttonRect);
-}
-
-void Button::update()
-{
-
+    SDL_RenderDrawRect(renderer, buttonRect);
 }
 
 void Button::setText(std::string text)
@@ -84,6 +78,6 @@ void Button::setFontSize(const unsigned int fontSize)
 
 void Button::setFont(std::string fontDir)
 {
-    this->fontDir =  fontDir;
+    this->fontDir = fontDir;
     setFont();
 }
